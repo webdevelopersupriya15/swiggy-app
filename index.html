@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Food Online from India's Best Food Delivery Service | Swiggy</title>
+    <link href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+	 <link href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/Swiggy-emblem .ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+     <script>
+      tailwind.config = {
+          theme: {
+            screens: {
+           'xs':'300px',
+
+          'sm': '570px',
+           // => @media (min-width: 640px) { ... }
+
+           'md': '768px',
+           // => @media (min-width: 768px) { ... }
+
+          'lg': '1024px',
+          // => @media (min-width: 1024px) { ... }
+
+          'xl': '1280px',
+         // => @media (min-width: 1280px) { ... }
+
+         '2xl': '1536px',
+          // => @media (min-width: 1536px) { ... }
+         
+            extend: {
+             
+            }
+          
+            }
+          }
+        }
+      </script> 
+</head>
+<body>
+    
+   <!--Model Box--> 
+   <div class="modelBox" onclick="modelFunc()"></div>
+
+   <!--Sidebar-->
+   <div class="fixed bg-[#fff] w-[30%] h-[100%] right-[-100%] z-[999] p-[15px_20px] transition-[0.5s] sidebar">
+        <span class="text-[35px] cursor-pointer" onclick="closeBtn()">&times;</span>
+        <div class="flex justify-between">
+            <div class="">
+                <h2 class="text-[27px] font-medium">Login</h2>
+                <p class="text-[14px] relative account">or <span class="text-[orangered]">create an account</span></p>
+            </div>
+            <div><img src="images/Image-login_btpq7r.avif" class="w-[85px] h-[85px]"/></div>
+        </div>
+       
+        <form>
+                 <input type="text" class="outline-0 z-[99] w-[100%] bg-transparent mt-[40px] border-[1px] border-[solid] border-[#ccc] py-2 px-2 leading-[50px]" placeholder="Phone Number"/>
+                 <button class="w-full bg-[orangered] py-2 px-2 leading-[30px] mt-[20px] text-white">Login</button>
+                 <p class="text-[12px] text-[#2d3436]">By clicking on Login, I accept the <span class="font-medium">Terms & Conditions & Privacy Policy</span></p>
+        </form>
+        
+   </div>
+
+   <!--Megabox-->
+   <div class="megaBox removePopUp lg:w-[60%] xs:w-[90%] mx-auto lg:p-[10px_0] sm:p-[8px_0] xs:p-[5px_0] lg:text-[16px] sm:text-[14px] xs:text-[12px]">
+        <div class="flex justify-between p-[10px] border-b-[1px] border-[#ccc] border-[solid]">
+            <span class="font-bold lg:text-[22px] sm:text-[18px] xs:text-[18px]">Filter</span>
+            <span class="text-[25px] cursor-pointer" onclick="closeBtn()">&times;</span>
+        </div>
+        <div class="flex">
+            <div class="basis-[25%] border-r-[1px] border-[#ccc] border-[solid]">
+                <ul class="enqItem">
+                    <li class="text-[#686D76] font-bold  menuactive">Sort</li>
+                    <li class="text-[#686D76] font-bold" >Delivery Time</li>
+                    <li class="text-[#686D76] font-bold" value="Cuisines">Cuisines</li>
+                    <li class="text-[#686D76] font-bold">Explore</li>
+                    <li class="text-[#686D76] font-bold">Ratings</li>
+                    <li class="text-[#686D76] font-bold">Veg/Non-Veg</li>
+                </ul>
+            </div>
+            <div class="basis-[75%] enqcriteria p-[10px]">
+                <p class="text-[#34495e]">Sort By</p>
+                <ul>
+                    <li class="mt-[10px]"><input type="radio" value='Relevance(Default)' onchange='sorting(this.value)' name="sItem" class="mr-[5px] accent-[orangered]" checked />Relevance(Default)</li>
+                    <li class="mt-[10px]"><input type="radio" value='DeliveryTime' name="sItem" onchange='sorting(this.value)' class="mr-[5px] accent-[orangered]" />DeliveryTime</li>
+                    <li class="mt-[10px]"><input type="radio" name="sItem" value='Rating' onchange='sorting(this.value)' class="mr-[5px] accent-[orangered]" />Rating</li>
+                    <li class="mt-[10px]"><input type="radio" name="sItem" value='Cost:LowtoHigh' onchange='sorting(this.value)' class="mr-[5px] accent-[orangered]" />Cost:LowtoHigh</li>
+                    <li class="mt-[10px]"><input type="radio" name="sItem" value='Cost:HightoLow' onchange='sorting(this.value)' class="mr-[5px] accent-[orangered] " />Cost:HightoLow</li>
+                </ul>
+            </div>
+        </div>
+
+   </div>
+
+   <!--Navbar-->
+   <div class="w-[100%] shadow-lg py-[15px] lg:mb-4 sm:mb-3 bg-white" id="header">
+    <div class="max-w-[1170px] mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="images/Swiggy-emblem.png"  alt="" class="lg:w-[90px] lg:h-[50px] sm:w-[60px] sm:h-[40px] w-[60px] h-[40px]" />
+            <span class="text-[#3d4152] font-bold">Other <i class="fa-solid fa-angle-down text-[orangered]"></i></span>
+        </div>
+        <div>
+            <ul class="menu lg:flex hidden">
+                <li><i class='bx bx-box text-[20px] mr-[7px]'></i>Swiggy Corporate</li>
+                <li><i class='bx bx-search text-[20px] mr-[7px]' ></i>Search</li>
+                <li>
+                    <i class='bx bxs-offer text-[20px] mr-[7px]'></i>Offers
+                    <sup class="text-[#ffa700] text-[10px] font-bold">NEW</sup>
+                </li>
+                <li><i class="fa-solid fa-life-ring  mr-[7px]"></i>Help</li>
+                <li onclick="openSidebar()"><i class='bx bx-user text-[20px] mr-[7px]'></i>Sign In</li>
+                <li class="relative"><i class='bx bx-cart text-[22px] mr-[7px]'></i>Cart
+                    <div class="absolute dropdown top-[140%] shadow-lg p-[30px] w-[300px] z-[999] bg-[white] ">
+                        <h2 class="text-[#7f8c8d] font-bold text-[30px]">Cart Empty</h2>
+                        <p class="text-[#95a5a6] font-[400] text-[14px]">Good food is always cooking! Go ahead, order some yummy items from the menu.</p>
+                    </div>
+                </li>
+            </ul>
+            <button class="w-[35px] h-[35px] bg-[#ccc] p-2 mr-5 rounded-[50%] flex justify-center items-center lg:hidden" id="navMenuBar">
+                <i class="p-2 fa-solid fa-bars"></i>
+            </button>
+        </div> 
+    </div>
+   </div>
+
+   <div class="menuSidebar fixed w-[60%] h-[100%] bg-white z-[99] shadow-lg p-[10px]">
+        <ul class="">
+            <li class="text-[15px] mt-4 flex items-center text-[#3d4152] font-medium"><i class='bx bx-box mr-2'></i>Swiggy Corporate</li>
+            <li class="text-[15px] mt-4 flex items-center text-[#3d4152] font-medium"><i class='bx bx-search mr-2' ></i>Search</li>
+            <li class="text-[15px] mt-4 flex items-center text-[#3d4152] font-medium">
+                <i class='bx bxs-offer mr-2'></i>Offers
+                <sup class="text-[#ffa700] text-[10px] font-bold">NEW</sup>
+            </li>
+            <li class="text-[15px] mt-4 flex items-center text-[#3d4152] font-medium"><i class="fa-solid fa-life-ring mr-2"></i>Help</li>
+            <li class="text-[15px] mt-4 flex items-center text-[#3d4152] font-medium" onclick="openSidebar()"><i class='bx bx-user mr-2'></i>Sign In</li>
+            <li class="text-[15px] mt-4 flex items-center text-[#3d4152] font-medium"><i class='bx bx-cart mr-2'></i>Cart
+            </li>
+        </ul>
+   </div>
+
+   <!--What's on your mind?-->
+   <div class="w-[100%] mt-5 lg:mb-[30px] sm:mb-[30px] xs:mb-[20px]">
+        <div class="max-w-[1070px] mx-auto py-[30px] xs:py-[20px] border-b-[1px] border-[solid] border-[#ccc] p-[0_20px]">
+            <h2 class="text-[25px] font-bold xs:text-[22px] xs:pb-10 sm:pb-0">What's on your mind?</h2>
+            <div class="owl-carousel owl-theme itemImg " id="itemImg">
+                
+               
+            </div>
+        </div>
+   </div> 
+
+   <!--Top restaurant chains in Asansol-->
+   <div class="lg:w-[100%] xs:w-[100%] mt-3  lg:mb-[30px] sm:mb-[30px] xs:mb-[20px]">
+    <div class="max-w-[1070px] mx-auto py-5 mb-5 border-b-[1px] border-[solid] border-[#ccc] p-[0_20px]">
+        <h2 class="text-[25px] font-bold mb-5 lg:pb-7 sm:pb-7  xs:pb-10">Top restaurant chains in Asansol</h2>
+        <div class="owl-carousel owl-theme itemImg "  id="topRes">
+            
+           
+        </div>
+    </div>
+   </div> 
+
+   <!--Restaurants with online food delivery in Asansol-->
+   <div class="w-[100%] mt-3 ">
+            <div class="max-w-[1070px] mx-auto mb-5 pb-[50px] border-b-[1px] border-[solid] border-[#ccc] p-[0_20px]">
+                <h1 class="text-[25px] font-bold">Restaurants with online food delivery in Asansol</h1>
+                <div class="w-[100%] flex lg:flex-nowrap sm:flex-wrap xs:flex-wrap  lg:gap-[10px] sm:gap-[10px] xs:gap-[13px] mt-[15px] mb-[15px]">
+                    <button class="p-[3px_10px] border-[1px] border-[solid] border-[#ccc] rounded-[30px]  text-[14px] mr-[10px]" onclick="megaPopup()">Filter<i class="fa-solid fa-filter text-[12px] ml-[5px]"></i></button>
+                    <div class="relative">
+                        <button class="p-[3px_0] border-[1px] border-[solid] border-[#ccc] rounded-[30px] w-[80px] text-[14px]  mr-[10px]" onclick="openPopup()">Sort By <i class="fa-solid fa-angle-down"></i></button>
+                        <div class="absolute z-[9] top-0 left-0 w-[180px]   bg-[white] rounded-[10px] p-[10px] border-[1px] border-[solid] border-[#ccc] removePopUp" id="sortPopup">
+                            <div class="flex justify-between mb-2">
+                                <p>Default</p>
+                                <input name="sItem" type="radio" value="Default" class="accent-[orangered]" checked/>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <p>Delivery time</p>
+                                <input name="sItem" type="radio" value="Delivery time" class="accent-[orangered]"/>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <p>Rating</p>
+                                <input name="sItem" type="radio" value="Rating" class="accent-[orangered]" />
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <p>Cost:LowtoHigh</p>
+                                <input name="sItem" type="radio" value="Cost:LowtoHigh" class="accent-[orangered]" />
+                            </div>
+                            <div class="flex justify-between mb-2 border-b-[1px] border-[solid] border-[#ccc] pb-2">
+                                <p>Cost:HightoLow</p>
+                                <input name="sItem" type="radio" value="Cost:HightoLow" class="accent-[orangered]" />
+                            </div>
+                            <button class="text-[orangered] mt-2 mb-2 font-bold" onclick="funcSort()">Apply</button>
+                        </div>
+                    </div>
+                    <button class="p-[3px_10px] border-[1px] border-[solid] border-[#ccc] rounded-[30px]  text-[14px] mr-[10px]">First Delivery</button>
+                    <button class="p-[3px_10px] border-[1px] border-[solid] border-[#ccc] rounded-[30px]  text-[14px] mr-[10px]">Ratings 4.0+</button>
+                    <button class="p-[3px_10px] border-[1px] border-[solid] border-[#ccc] rounded-[30px]  text-[14px] mr-[10px]">Pure Veg</button>
+                    <button class="p-[3px_10px] border-[1px] border-[solid] border-[#ccc] rounded-[30px]  text-[14px] mr-[10px]">Offers</button>
+                    <button class="p-[3px_10px] border-[1px] border-[solid] border-[#ccc] rounded-[30px]  text-[14px] mr-[10px]">Rs. 300-Rs. 600</button>
+                    <button class="p-[3px_10px] border-[1px] border-[solid] border-[#ccc] rounded-[30px]  text-[14px] mr-[10px]">Less than Rs. 300</button>
+                </div>
+
+                <div class="grid lg:grid-cols-4 xs:grid-cols-2 gap-[20px] items">  
+                <!--  -->
+                
+                </div>
+            </div>
+                
+   </div> 
+
+   <!--Best Places to Eat Across Cities-->
+   <div class="w-[100%] mt-5">
+    <div class="max-w-[1070px] mx-auto mb-5 p-[0_20px]">
+        <h1 class="text-[25px] font-bold mb-5">Best Places to Eat Across Cities</h1>
+       
+        <div class="grid lg:grid-cols-4 sm:grid-cols-2  xs:grid-cols-2 gap-[20px] lg:text-[16px] sm:text-[16px] xs:text-[14px]">
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in Bangalore</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in Pune</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in Mumbai</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in Delhi</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in Hyderabad</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in Kolkata</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in Chennai</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in Chandigarh</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in..</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in Jaipur</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Best Restaurants in Nagpur</button>
+            <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Show More<i class="fa-solid fa-angle-down relative left-2"></i></button>
+        
+        </div>
+    </div>
+        
+   </div> 
+
+   <!--Best Cuisines Near Me-->
+    <div class="w-[100%] mt-5">
+        <div class="max-w-[1070px] mx-auto mb-5 p-[0_20px]">
+            <h1 class="text-[25px] font-bold mb-5 mt-[60px]">Best Cuisines Near Me</h1>
+        
+            <div class="grid lg:grid-cols-4  xs:grid-cols-2 gap-[20px] lg:text-[16px] sm:text-[16px] xs:text-[14px]">
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Chinese Restaurant Near Me</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">South Indian Restaurant Near..</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Indian Restaurant Near Me</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Kerala Restaurant Near Me</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Korean Restaurant Near Me</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">North Indian Restaurant Near..</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Seafood Restaurant Near Me</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Bengali Restaurant Near Me</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Punjabi Restaurant Near Me</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Italian Restaurant Near Me</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Andhra Restaurant Near Me</button>
+                <button class="p-[12px_8px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Show More<i class="fa-solid fa-angle-down relative left-2"></i></button>
+            
+            </div>
+        </div>
+    </div> 
+
+   <!--Explore Every Restaurants Near Me-->
+   <div class="w-[100%] mt-5">
+    <div class="max-w-[1070px] mx-auto mb-5 p-[0_20px]">
+        <h1 class="text-[25px] font-bold mb-5 mt-[60px]">Explore Every Restaurants Near Me</h1>
+       
+        <div class="grid grid-cols-2 lg:gap-[20px] sm:gap-[20px] xs:gap-[12px] lg:text-[16px] sm:text-[16px] xs:text-[14px]">
+            <button class="lg:p-[12px_8px] sm:p-[12px_8px] xs:p-[10px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Explore Restaurants Near Me</button>
+            <button class="lg:p-[12px_8px] sm:p-[12px_8px] xs:p-[10px] border-[1px] border-[solid] border-[#ccc] text-[#353b48] rounded-[20px]">Explore Top Rated Restaurants Near Me</button>
+        </div>
+    </div>
+        
+   </div> 
+
+   <!--For better experience,download the Swiggy app now-->
+    <div class="w-[100%]  mt-5 bg-[#F0F0F5] mt-[80px]">
+    <div class="max-w-[1000px] mx-auto py-2">
+        <div class="grid lg:grid-cols-2 xs:grid-cols-1 gap-[20px] place-items-center py-3">
+            <h1 class="text-[28px] xs:text-[20px] font-bold text-[#3D4046] xs:px-4">For better experience,download the Swiggy app now</h1>
+            <div class="flex justify-between xs:mt-6 xs:mx-3">
+                <div class="basis-[45%]"><img src="images/play_store.avif" class="w-full" /></div>
+                <div class="basis-[45%]"><img src="images/app_store.avif" class="w-full" /></div>
+            </div>
+        </div>
+    </div>
+        
+   </div> 
+
+   <!--Footer-->
+    <div class="w-[100%]   bg-[#02060C] lg:pb-[100px] sm:pb-[60px] xs:pb-[20px]">
+        <div class="max-w-[1000px] mx-auto py-2">
+        <div class="grid lg:grid-cols-4 xs:grid-cols-1 gap-[20px] py-5">
+            <div>
+                <div class="flex xs:mx-3">
+                    <img src="images/Swiggy-emblem.png" width="60" height="60" />
+                    <span class="font-bold text-white text-[22px]">Swiggy</span>
+                </div>
+                <p class="text-white ml-4 mt-3">© 2024 Bundl <br />Technologies Pvt. Ltd</p>
+            </div>
+            <div class="text-white xs:mx-3">
+                <h3 class="font-bold text-[20px]"> Company</h3>
+                <ul class="footerUl">
+                   
+                    <li>About</li>
+                    <li>Careers</li>
+                    <li>Team</li>
+                    <li>Swiggy One</li>
+                    <li>Swiggy Instamart</li>
+                    <li>Swiggy Genie</li>
+                </ul>
+            </div>
+            <div class="text-white xs:mx-3">
+                <h3 class="font-bold text-[20px]">Contact us</h3>
+                <ul class="footerUl">
+                    <li>Help & Support</li>
+                    <li>Partner with us</li>
+                    <li>Ride with us</li>
+                </ul>
+                <h3 class="font-bold text-[20px] mt-[30px]">Legal</h3>
+                <ul class="footerUl">
+                   
+                    <li>Terms & Conditions</li>
+                    <li>Cookie Policy</li>
+                    <li>Privacy Policy</li>
+                    <li>Investor Relations</li>
+                </ul> 
+                
+           </div>
+           <div class="text-white xs:mx-3">
+               <h3 class="font-bold text-[20px]">We deliver to:</h3>
+               <ul class="footerUl">
+                  <li>Bangalore</li>
+                  <li>Gurgaon</li>
+                  <li>Hyderabad</li>
+                  <li>Delhi</li>
+                  <li>Mumbai</li>
+                  <li>Pune</li>
+               </ul>
+               <select class="bg-[transparent] border-[1px] border-[solid] border-[#b2bec3] text-[#b2bec3] p-[5Px_10px] rounded-[15px] mt-[20px]">
+                 <option value="" >589 cities</option>
+               </select>
+           </div>
+           
+
+    </div>
+        
+   </div> 
+
+</body>
+<script src="https://owlcarousel2.github.io/OwlCarousel2/assets/vendors/jquery.min.js">
+</script>
+ <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js">
+ </script>
+<script type="text/javascript">
+
+    /*--------------------------- Mobile Menubar Open ---------------------------- */
+    let navBar=document.querySelector('#navMenuBar>i')
+    let menuSidebar=document.querySelector('.menuSidebar')
+    let header=document.querySelector('#header')
+    let modelBoxs=document.querySelector('.modelBox')    // only for this program
+    console.log(header)
+    navBar.addEventListener('click',()=>{
+       if(navBar.className=='p-2 fa-solid fa-bars'){
+           menuSidebar.style.left="0"
+           navBar.classList.remove('fa-bars')  
+           navBar.classList.add('fa-xmark')    
+           modelBoxs.style.display='block'
+           modelBoxs.style.background='rgba(0,0,0,0.5)'
+           header.style.position='relative'
+           header.style.zIndex='9999'
+           document.body.classList.add("remove-scrolling"); 
+       }else{
+           menuSidebar.style.left="-100%"
+           navBar.classList.remove('fa-xmark')  
+           navBar.classList.add('fa-bars')
+           modelBoxs.style.display='none'
+           modelBoxs.style.background='rgba(255,255,255,0)'
+           header.style.position='initial'
+           header.style.zIndex='0'
+           document.body.classList.remove("remove-scrolling"); 
+       }
+    })
+ 
+    /*------------------ Sidebar ------------------------------*/
+ 
+    
+
+ /*-------------------------------------- Object Section -------------------------*/
+    let itemInMind=[
+        {
+            id:1,
+            bg:"images/Biryani_2.avif"
+        },
+        {
+            id:2,
+            bg:"images/Pizza.avif"
+        },
+        {
+            id:3,
+            bg:"images/Rolls.avif"
+        },
+        {
+            id:4,
+            bg:"images/Momos.avif"
+        },
+        {
+            id:5,
+            bg:"images/Burger.avif"
+        },
+        {
+            id:6,
+            bg:"images/Noodles.avif"
+        },
+        {
+            id:7,
+            bg:"images/Chole_Bature.avif"
+        },
+        {
+            id:8,
+            bg:"images/Dosa.avif"
+        },
+        {
+            id:9,
+            bg:"images/Cutlet.avif"
+        },
+    ]
+    let itemReceipy=[
+        {
+            id:1,
+            bg:"images/490629b70f89da8a5b93fc199ece335e.avif",
+            icont:"",
+            rebate:"₹50",
+            upto:"OFF UPTO ₹",
+            price:100,
+            resName:"Cafe Coffee Day",
+            rating:4.5,
+            dot:"• ",
+            dtimeFrom:"35",
+            dtimeTo:"40 mins",
+            category:"Beverages, Cafe, Snacks,..",
+            place:"Shristinagar"
+        },    
+        {
+            id:2,
+            bg:"images/64fd45fd9f44c1737bc446e470bed666.avif",
+            icont:"ITEMS AT",
+            rebate:"₹99",
+            upto:"",
+            price:"",
+            resName:"Wow! Momo",
+            rating:4.5,
+            dot:"• ",
+            dtimeFrom:"35",
+            dtimeTo:"45 mins",
+            category:"Tibetan, Healthy Food, Asian,..",
+            place:"Ushagram"
+        },
+        {
+            id:3,
+            bg:"images/111e12a3-f428-44e0-b461-7726e083d19d_875351.avif",
+            icont:"",
+            rebate:"",
+            upto:"",
+            price:"",
+            resName:"Wow! China",
+            rating:4,
+            dot:"• ",
+            dtimeFrom:"35",
+            dtimeTo:"40 mins",
+            category:"Tibetan, Chinees, Asian,..",
+            place:"Ushagram"
+        },
+        {
+            id:4,
+            bg:"images/tnbb8cmkeg9vnxg5efh1.avif",
+            icont:"",
+            rebate:"30%",
+            upto:"OFF UPTO ₹",
+            price:100,
+            resName:"IS Cafe",
+            rating:4.2,
+            dot:"• ",
+            dtimeFrom:"30",
+            dtimeTo:"35 mins",
+            category:"South Indian",
+            place:"S.B.Gorai Road"
+        },
+        {
+            id:5,
+            bg:"images/f1bc9ddf53de574cdc35ab2f717df234.avif",
+            icont:"",
+            rebate:"10%",
+            upto:"OFF upto ₹",
+            price:40,
+            resName:"Dosa Haat",
+            rating:4.6,
+            dot:"• ",
+            dtimeFrom:"25",
+            dtimeTo:"30 mins",
+            category:"South Indian, Chinese, Fast..",
+            place:"Chelidanga"
+        },
+        {
+            id:6,
+            bg:"images/dwsxkfvgxr8c1rjsg59n.avif",
+            icont:"",
+            rebate:"10%",
+            upto:"OFF upto ₹",
+            price:40,
+            resName:"Madhuri",
+            rating:4.4,
+            dot:"• ",
+            dtimeFrom:"25",
+            dtimeTo:"30 mins",
+            category:"North Indian, Indian, Fast..",
+            place:"Ushagram"
+        },
+        {
+            id:7,
+            bg:"images/ee9c2f12dd4fe8e3cb8c0e8a7ecc56be.avif",
+            icont:"",
+            rebate:"₹150",
+            upto:"OFF ABOVE..",
+            price:"",
+            resName:"Wow! Chicken By Wow!..",
+            rating:4.3,
+            dot:"• ",
+            dtimeFrom:"40",
+            dtimeTo:"45 mins",
+            category:"American, Snacks, Beverages..",
+            place:"Ushagram"
+        },
+        {
+            id:8,
+            bg:"images/ee9c2f12dd4fe8e3cb8c0e8a7ecc56be.avif",
+            icont:"",
+            rebate:"₹150",
+            upto:"OFF ABOVE..",
+            price:"",
+            resName:"Wow! Chicken By Wow!..",
+            rating:4.3,
+            dot:"• ",
+            dtimeFrom:"40",
+            dtimeTo:"45 mins",
+            category:"American, Snacks, Beverages..",
+            place:"Ushagram"
+        }  
+                 
+    ]
+
+    /* --------------------------------------------------------------------------*/
+
+
+    /*------------Restaurants with online food delivery in Asansol--------------------*/
+
+    let menuItems=document.querySelector('.items')
+    let getmenuItemfunction=()=>{
+        menuItems.innerHTML=''
+        itemReceipy.forEach((v,i)=>{
+            menuItems.innerHTML+=`
+
+                <div class="p-2 topResImgHover">
+                    <div class="itemimg" style="background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(0,0,0,0.8)),url('${v.bg}');background-position: center; background-size: cover; filter: contrast(150%);">
+                        <h1 class="font-bold text-[white] lg:text-[20px] xs:text-[16px] xs:p-2">${v.icont} ${v.rebate} ${v.upto}${v.price} </h1>
+                    </div>
+                    <h2 class="text-[#6B6D6C] font-bold mt-[10px] text-[18px]">${v.resName}</h2>
+                    <div class="flex items-center">
+                        <span class="bg-[green] text-white text-[10px] w-[20px] h-[20px] rounded-[50%] flex justify-center items-center mr-[5px]"><i class="fa-solid fa-star"></i></span>
+                        <p class="text-[#6B6D6C] font-bold xs:text-[15px]">${v.rating} ${v.dot}${v.dtimeFrom}-${v.dtimeTo}</p>
+                    </div>
+                    <p class="text-[#6B6D6C]">${v.category}</p>
+                    <p class="text-[#6B6D6C]">${v.place}</p>
+                </div>`
+        })
+    }
+    getmenuItemfunction()
+
+    let funcSort=()=>{
+        let opt=document.querySelector('input[name="sItem"]:checked')
+        
+        if(opt.value=='Delivery time'){
+            itemReceipy.sort((a, b) => a.dtimeFrom - b.dtimeFrom)
+            getmenuItemfunction()
+            sortPopup.classList.remove('displayPopUp')
+            sortPopup.classList.add('removePopUp')
+            modelBox.style.display='none'
+        }
+        else if(opt.value=='Rating'){
+            itemReceipy.sort((a, b) => b.rating - a.rating)
+            getmenuItemfunction()
+            sortPopup.classList.remove('displayPopUp')
+            sortPopup.classList.add('removePopUp')
+            modelBox.style.display='none'
+        }
+        else if(opt.value=='Cost:LowtoHigh'){
+            itemReceipy.sort((a, b) => a.price - b.price)
+            console.log(itemReceipy)
+            getmenuItemfunction()
+            sortPopup.classList.remove('displayPopUp')
+            sortPopup.classList.add('removePopUp')
+            modelBox.style.display='none'
+        }
+        else if(opt.value=='Cost:HightoLow'){
+            itemReceipy.sort((a, b) => b.price - a.price)
+            console.log(itemReceipy)
+            getmenuItemfunction()
+            sortPopup.classList.remove('displayPopUp')
+            sortPopup.classList.add('removePopUp')
+            modelBox.style.display='none'
+        }
+        else{
+            itemReceipy.sort((a, b) => a.id - b.id)
+            getmenuItemfunction()
+            sortPopup.classList.remove('displayPopUp')
+            sortPopup.classList.add('removePopUp')
+            modelBox.style.display='none'
+        }
+
+    }
+
+    let sortPopup=document.querySelector('#sortPopup')
+    let modelBox=document.querySelector('.modelBox')
+    let megaBox=document.querySelector('.megaBox')
+    let openPopup=()=>{
+        sortPopup.classList.add('displayPopUp')
+        modelBox.style.display='block'
+    }
+    let modelFunc=()=>{
+        sortPopup.classList.remove('displayPopUp')
+        sortPopup.classList.add('removePopUp')
+        modelBox.style.display='none'
+        modelBox.style.background='rgba(255,255,255,0)'
+        megaBox.style.visibility='hidden'
+        megaBox.style.opacity='0'
+        sidebar.style.right='-100%'
+        menuSidebar.style.left="-100%"
+        navBar.classList.remove('fa-xmark')  
+        navBar.classList.add('fa-bars')
+        header.style.position='initial'
+        header.style.zIndex='0'
+        document.body.classList.remove("remove-scrolling"); 
+    }
+    let megaPopup=()=>{
+        modelBox.style.display='block'
+        modelBox.style.background='rgba(0,0,0,0.5)'
+        megaBox.style.visibility='visible'
+        megaBox.style.opacity='1'
+    }
+    let enqItem=document.querySelectorAll('.enqItem>li')
+    let enqcriteria=document.querySelector('.enqcriteria')
+    enqItem.forEach((element,index)=>{
+        element.addEventListener('click',(event)=>{
+            enqItem.forEach((el,i)=>{
+                if(index!=i){
+                    el.classList.remove('menuactive')
+                }
+            })
+            element.classList.toggle('menuactive')
+             enqcriteria.innerHTML=''
+                if(event.target.innerHTML=='Sort'){
+                    enqcriteria.innerHTML+=`
+                        <p class="text-[#34495e]">Sort By</p>
+                        <ul>
+                            <li class="mt-[10px]"><input type="radio" value='Relevance(Default)' onchange='sorting(this.value)' name="sItem" class="mr-[5px] accent-[orangered]" checked />Relevance(Default)</li>
+                            <li class="mt-[10px]"><input type="radio" value='DeliveryTime' name="sItem" onchange='sorting(this.value)' class="mr-[5px] accent-[orangered]" />DeliveryTime</li>
+                            <li class="mt-[10px]"><input type="radio" name="sItem" value='Rating' onchange='sorting(this.value)' class="mr-[5px] accent-[orangered]" />Rating</li>
+                            <li class="mt-[10px]"><input type="radio" name="sItem" value='Cost:LowtoHigh' onchange='sorting(this.value)' class="mr-[5px] accent-[orangered]" />Cost:LowtoHigh</li>
+                            <li class="mt-[10px]"><input type="radio" name="sItem" value='Cost:HightoLow' onchange='sorting(this.value)' class="mr-[5px] accent-[orangered] " />Cost:HightoLow</li>
+                        </ul>
+                    `
+                }
+                if(event.target.innerHTML=='Delivery Time'){
+                    enqcriteria.innerHTML+=`
+                        <p class="text-[#34495e]">Delivery Time</p>
+                        <ul>
+                            <li class="mt-[10px]"><input type="radio" class="mr-[5px] accent-[orangered]" checked />First Delivery</li>
+                            
+                        </ul>
+                    `
+                }
+                if(event.target.innerHTML=='Cuisines'){
+                    enqcriteria.innerHTML+=`
+                        <ul>
+                            <p class="text-[#34495e]">FILTER BY CUISINE<p class="text-[#34495e]">
+
+                            <li class="mt-[10px]"><input type="radio" class="mr-[5px] accent-[orangered]" checked />American</li>
+                            <li class="mt-[10px]"><input type="radio" class="mr-[5px] accent-[orangered]" />Asian</li>
+                            <li class="mt-[10px]"><input type="radio" class="mr-[5px] accent-[orangered]"/>Bakery</li>
+                            <li class="mt-[10px]"><input type="radio" class="mr-[5px] accent-[orangered]"/>Barbecue</li>
+                            <li class="mt-[10px]"><input type="radio" class="mr-[5px] accent-[orangered]" />Bengali</li>
+                            <li class="mt-[10px]"><input type="radio" class="mr-[5px] accent-[orangered]"/>Beverages</li>
+                            <li class="mt-[10px]"><input type="radio" class="mr-[5px] accent-[orangered]"/>Bihari</li>
+                           
+                            
+                        </ul>
+                    `
+                }
+                      
+        })
+    })
+    let sorting=(val)=>{
+        if(val=='DeliveryTime'){
+            itemReceipy.sort((a, b) => a.dtimeFrom - b.dtimeFrom)
+            getmenuItemfunction()
+            
+        }
+        else if(val=='Rating'){
+            itemReceipy.sort((a, b) => b.rating - a.rating)
+            getmenuItemfunction()
+            
+        }
+        else if(val=='Cost:LowtoHigh'){
+            itemReceipy.sort((a, b) => a.price - b.price)
+            getmenuItemfunction()
+           
+        }
+        else if(val=='Cost:HightoLow'){
+            itemReceipy.sort((a, b) => b.price - a.price)
+            getmenuItemfunction()
+           
+        }
+        else{
+            itemReceipy.sort((a, b) => a.id - b.id)
+            getmenuItemfunction()
+            
+        }
+    
+    }
+    let closeBtn=()=>{
+        modelBox.style.background='rgba(255,255,255,0)'
+        modelBox.style.display='none'
+        megaBox.style.visibility='hidden'
+        megaBox.style.opacity='0'
+        sidebar.style.right='-100%'
+    }
+
+    /* ------------------------------------------------------------------------------*/
+
+
+   /*---------------------------- ItemInMind -------------------------------------*/
+    let itemImg=document.querySelector('.itemImg')
+    
+    itemInMind.forEach((v,i)=>{
+        itemImg.innerHTML +=`<div class="item">
+                    <div class="">
+                        <img src="${v.bg}" class="w-full" />
+                    </div>
+                </div>`
+        
+    })
+
+    /*---------------------------------- Top Restaurent ---------------------*/
+    let topRes=document.querySelector('#topRes')
+
+    //Array Shuffle 
+
+    function shuffle(array) {
+        let currentIndex = array.length;
+
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+
+            // Pick a remaining element...
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+    }
+
+
+    shuffle(itemReceipy);
+    
+    itemReceipy.forEach((v,i)=>{
+        topRes.innerHTML +=`<div class="item">
+                                <div class='topResImgHover'>
+                                        <div class="itemimg itemheight" style="background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(0,0,0,0.8)),url('${v.bg}');background-position: center; background-size: cover; filter: contrast(150%);">
+                                            <h1 class="font-bold text-[white] text-[22px]  ">${v.icont} ${v.rebate} ${v.upto}${v.price} </h1>
+                                        </div>
+                                        <h2 class="text-[#6B6D6C] font-bold mt-[10px] text-[18px] ">${v.resName}</h2>
+                                        <div class="flex items-center">
+                                            <span class="bg-[green] text-white text-[10px] w-[20px] h-[20px] rounded-[50%] flex justify-center items-center mr-[5px]"><i class="fa-solid fa-star"></i></span>
+                                            <p class="text-[#6B6D6C] font-bold">${v.rating} ${v.dot}${v.dtimeFrom}-${v.dtimeTo}</p>
+                                        </div>
+                                        <p class="text-[#6B6D6C]">${v.category}</p>
+                                        <p class="text-[#6B6D6C]">${v.place}</p>
+                                    </div>
+             
+                            </div>`
+        
+    })
+
+    /*------------------ Sidebar ------------------------------*/
+    let sidebar=document.querySelector('.sidebar')
+    
+    let openSidebar=()=>{
+        sidebar.style.right='0'
+        modelBox.style.display='block'
+        modelBox.style.background='rgba(0,0,0,0.5)'
+    }
+
+
+    $('#itemImg').owlCarousel({
+    loop:true,
+    margin:20,
+    responsiveClass:true,
+    mouseDrag:true,
+    touchDrag:true,
+    autoplayTimeout:2000,
+    smartSpeed:1000,
+    autoplayHoverPause:true,
+    responsive:{
+        0:{
+            items:3,
+            nav:true,
+    		dots:true,
+        },
+        600:{
+            items:6,
+            nav:false,
+    		dots:true
+        },
+        1000:{
+            items:6,
+            nav:true,
+    		dots:false
+        }
+   	  }
+	})
+    $('#topRes').owlCarousel({
+    loop:true,
+    center:true,
+    margin:30,
+    responsiveClass:true,
+    mouseDrag:true,
+    touchDrag:true,
+    autoplayTimeout:2000,
+    smartSpeed:1000,
+    autoplayHoverPause:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true,
+    		dots:true,
+        },
+        600:{
+            items:3,
+            nav:false,
+    		dots:true
+        },
+        1000:{
+            items:4,
+            nav:true,
+    		dots:false
+        }
+   	  }
+	})
+</script>
+</html>

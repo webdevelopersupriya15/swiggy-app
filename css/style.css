@@ -1,0 +1,349 @@
+.remove-scrolling { 
+    height: 100%; 
+    overflow: hidden; 
+} 
+.itemimg{
+    height:140px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.itemheight{
+    height:160px;
+}
+.topResImgHover{
+    transition: 0.5s;
+    transform: scale(1.0,1.0);
+}
+.topResImgHover:hover{
+    transform: scale(0.9,0.9);
+}
+.removePopUp{
+    display: none;
+   
+}
+.displayPopUp{
+    display: block;
+    z-index: 999;
+}
+.modelBox{
+    width: 100%;
+    height:100%;
+    position: fixed;
+    background: rgba(255,255,255,0);
+    z-index: 9;
+    display: none;
+    top:0
+}
+.megaBox{
+    width:50%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background: white;
+    position: fixed;
+    z-index: 9;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+}
+.enqItem>li{
+    cursor: pointer;
+    margin-top: 7px;
+    padding: 10px;
+    color:#34495e
+}
+.menuactive{
+    border-left:5px solid orangered;
+}
+.menu>li{
+    margin-right: 30px;
+    padding: 10px;
+    color: #3d4152;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.menu>li:hover{
+    color: #ffa700;
+}
+.menu>li>.dropdown{
+    left:calc(100% - 300px);
+    border-top:3px solid #ffa700;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+.menu>li:hover .dropdown{
+    visibility: visible;
+    opacity: 1;
+    top:120%
+}
+.menu>li>.dropdown:after{
+    content:"";
+    position: absolute;
+    top:-23px;
+    left:90%;
+    transform: translateX(-50%);
+    border-width:10px;
+    border-color:transparent transparent #ffa700 transparent;
+    border-style: solid;
+}
+.owl-nav.disabled {
+    display: block !important;
+}
+.owl-prev,
+.owl-next{
+    position: absolute;
+    top: -40px;
+    right:0;
+}
+#topRes .owl-prev,
+#topRes .owl-next{
+    top: -70px !important;
+}
+.owl-prev
+{
+    right:40px;
+}
+.owl-prev span
+{
+    border-radius: 50%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width:30px;
+    font-size: 0;
+    height:30px;
+    background: url(../images/left-arrow.png) no-repeat center center;
+    background-size:15px 15px;
+    color: white;
+    display: block;
+    background-color: white;
+            
+}
+
+.owl-next span
+{
+    border-radius: 50%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width:30px;
+    font-size: 0;
+    height:30px;
+    background: url(../images/right-arrow.png) no-repeat center center;
+    background-size:15px 15px;
+    color: white;
+    display: block;
+    background-color: white;
+}
+.owl-prev:hover,.owl-next:hover {
+    background-color: #fff !important; /* Ensuring no change on hover */
+    color: #000 !important;            /* Ensuring no change on hover */
+    /* Other properties to reset */
+    box-shadow: none !important;       /* Example of removing shadow */
+    /* Add more properties if needed */
+  }
+.footerUl li{
+    line-height: 35px;
+    color:#b2bec3;
+}
+.account::after{
+    content: '';
+    position: absolute;
+    background: #000;
+    width:40px;
+    height:3px;
+    display: block;
+    top:40px;
+    left:0
+
+}
+::placeholder{
+    color:#34495e;
+}
+
+
+
+
+
+
+
+
+.itemimg{
+    height:140px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.itemheight{
+    height:160px;
+}
+.topResImgHover{
+    transition: 0.5s;
+    transform: scale(1.0,1.0);
+}
+.topResImgHover:hover{
+    transform: scale(0.9,0.9);
+}
+.removePopUp{
+    display: none;
+   
+}
+.displayPopUp{
+    display: block;
+    z-index: 999;
+}
+.sidebar{
+   transition: right 0.5s ease;
+}
+
+.modelBox{
+    width: 100%;
+    height:100%;
+    position: fixed;
+    background: rgba(255,255,255,0);
+    z-index: 9;
+    display: none;
+    transition: background 0.5s ease;
+    top:0
+}
+.megaBox{
+    width:50%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background: white;
+    position: fixed;
+    z-index: 9;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+}
+.enqItem>li{
+    cursor: pointer;
+    margin-top: 7px;
+    padding: 10px;
+    color:#34495e
+}
+.menuactive{
+    border-left:5px solid orangered;
+}
+.menu>li{
+    margin-right: 30px;
+    padding: 10px;
+    color: #3d4152;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.menu>li:hover{
+    color: #ffa700;
+}
+.menu>li>.dropdown{
+    left:calc(100% - 300px);
+    border-top:3px solid #ffa700;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+.menu>li:hover .dropdown{
+    visibility: visible;
+    opacity: 1;
+    top:120%
+}
+.menu>li>.dropdown:after{
+    content:"";
+    position: absolute;
+    top:-23px;
+    left:90%;
+    transform: translateX(-50%);
+    border-width:10px;
+    border-color:transparent transparent #ffa700 transparent;
+    border-style: solid;
+}
+.owl-nav.disabled {
+    display: block !important;
+}
+.owl-prev,
+.owl-next{
+    position: absolute;
+    top: -40px;
+    right:0;
+}
+#topRes .owl-prev,
+#topRes .owl-next{
+    top: -60px;
+}
+.owl-prev
+{
+    right:40px;
+}
+.owl-prev span
+{
+    border-radius: 50%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width:30px;
+    font-size: 0;
+    height:30px;
+    background: url(../images/left-arrow.png) no-repeat center center;
+    background-size:15px 15px;
+    color: white;
+    display: block;
+    background-color: white;
+            
+}
+
+.owl-next span
+{
+    border-radius: 50%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width:30px;
+    font-size: 0;
+    height:30px;
+    background: url(../images/right-arrow.png) no-repeat center center;
+    background-size:15px 15px;
+    color: white;
+    display: block;
+    background-color: white;
+}
+.owl-prev:hover,.owl-next:hover {
+    background-color: #fff !important; /* Ensuring no change on hover */
+    color: #000 !important;            /* Ensuring no change on hover */
+    /* Other properties to reset */
+    box-shadow: none !important;       /* Example of removing shadow */
+    /* Add more properties if needed */
+  }
+.footerUl li{
+    line-height: 35px;
+    color:#b2bec3;
+}
+.account::after{
+    content: '';
+    position: absolute;
+    background: #000;
+    width:40px;
+    height:3px;
+    display: block;
+    top:40px;
+    left:0
+
+}
+::placeholder{
+    color:#34495e;
+}
+.menuSidebar{
+    left:-100%;
+    transition: left 0.5s ease;
+}
